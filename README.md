@@ -116,9 +116,9 @@ localhostForwarding=True
 * When you compile it with -O2, it injects a few nops instead.
 * Those are replaced with the actual instumentation code at runtime when you enable it.
 
-```
-in foo.cpp:
+* in foo.cpp:
 
+```cpp
 void life(int timeToLive_) {
   for(unsigned i=0; i<timeToLive_; ++i) {
     XPEDITE_TXN_SCOPE(Life);
@@ -131,9 +131,11 @@ void life(int timeToLive_) {
     code();
   }
 }
+```
 
-objdump -M Intel -d foo
+* objdump -M Intel -d foo
 
+```asm
 ## If you compile with -O2
 0000000000008690 <_Z4lifei>:
     8690:	f3 0f 1e fa          	endbr64
