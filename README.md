@@ -73,3 +73,38 @@ vim profileInfo.py # and add homeDir at the end.
 # jupyter starts up and you can see transactions
 ```
 
+## To access Jupyter nootbook in WSL2 from Windows host
+
+* edit scripts/lib/xpedite/jupyter/driver.py
+
+```py
+195 def launchJupyter(homeDir):
+196   """
+197   Method to set env vars for overriding jup config, adding
+198    python path and extensions, and finally launching jupyter
+199
+200   """
+201   from xpedite.jupyter         import SHELL_PREFIX, DATA_DIR
+202   from xpedite.dependencies    import binPath
+203   LOGGER.info('')
+204   pyPath = os.path.dirname(binPath('python')) + os.pathsep + os.environ['PATH']
+205   initPath = os.path.dirname(__file__)
+206   jupyterEnv = os.environ
+207   jupyterEnv[Context.dataPathKey] = os.path.join(os.path.abspath(homeDir), DATA_DIR)
+208   jupyterEnv['JUPYTER_PATH'] = os.path.join(initPath, '../../../jupyter/extensions/')
+209   jupyterEnv['JUPYTER_CONFIG_DIR'] = os.path.join(initPath, '../../../jupyter/config/')
+210   jupyterEnv['XPEDITE_PATH'] = os.path.abspath(os.path.join(initPath, '../../'))
+211   jupyterEnv['PATH'] = pyPath
+212   jupyterEnv['HOME'] = tempfile.mkdtemp(prefix=SHELL_PREFIX, dir='/tmp')
+213   ### change here
+214   #ip = socket.gethostbyname(socket.gethostname())
+215   ip = "0.0.0.0"i195 def launchJupyter(homeDir):
+```
+
+* On Windows, make %USERPROFILE%\\.wslconfig
+
+```
+localhostForwarding=True
+```
+
+* After running the report, access http://localhost:8888/...(copy from the WSL2 output) from Windows's browser
