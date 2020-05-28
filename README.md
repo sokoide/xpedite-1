@@ -98,7 +98,7 @@ vim profileInfo.py # and add homeDir at the end.
 212   jupyterEnv['HOME'] = tempfile.mkdtemp(prefix=SHELL_PREFIX, dir='/tmp')
 213   ### change here
 214   #ip = socket.gethostbyname(socket.gethostname())
-215   ip = "0.0.0.0"i195 def launchJupyter(homeDir):
+215   ip = "0.0.0.0"
 ```
 
 * On Windows, make %USERPROFILE%\\.wslconfig
