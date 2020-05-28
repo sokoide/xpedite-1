@@ -108,3 +108,95 @@ localhostForwarding=True
 ```
 
 * After running the report, access http://localhost:8888/...(copy from the WSL2 output) from Windows's browser
+
+
+## What's injected
+
+* When you compile foo.cpp with the options I described above, the following Xpedite code was injected at 848a, 84a0 and the callers in `_Z4lifei`. Those I think are replaced with the actual instumentation code at runtime when you enable it.
+
+```
+in foo.cpp:
+
+void life(int timeToLive_) {
+  for(unsigned i=0; i<timeToLive_; ++i) {
+    XPEDITE_TXN_SCOPE(Life);
+    eat();
+
+    XPEDITE_PROBE(SleepBegin);
+    sleep();
+
+    XPEDITE_PROBE(CodeBegin);
+    code();
+  }
+}
+
+objdump -M Intel -d foo
+...
+000000000000848a <_ZZ4lifeiEN18XpediteGuardLife12C1Ev>:
+    848a:	55                   	push   rbp
+    848b:	48 89 e5             	mov    rbp,rsp
+    848e:	48 89 7d f8          	mov    QWORD PTR [rbp-0x8],rdi
+    8492:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+    8498:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+    849d:	90                   	nop
+    849e:	5d                   	pop    rbp
+    849f:	c3                   	ret
+
+00000000000084a0 <_ZZ4lifeiEN18XpediteGuardLife12D1Ev>:
+    84a0:	55                   	push   rbp
+    84a1:	48 89 e5             	mov    rbp,rsp
+    84a4:	48 89 7d f8          	mov    QWORD PTR [rbp-0x8],rdi
+    84a8:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+    84ad:	90                   	nop
+    84ae:	5d                   	pop    rbp
+    84af:	c3                   	ret    0000000
+
+0000084b0 <_Z4lifei>:
+    84b0:	f3 0f 1e fa          	endbr64
+    84b4:	55                   	push   rbp
+    84b5:	48 89 e5             	mov    rbp,rsp
+    84b8:	53                   	push   rbx
+    84b9:	48 83 ec 28          	sub    rsp,0x28
+    84bd:	89 7d dc             	mov    DWORD PTR [rbp-0x24],edi
+    84c0:	64 48 8b 04 25 28 00 	mov    rax,QWORD PTR fs:0x28
+    84c7:	00 00
+    84c9:	48 89 45 e8          	mov    QWORD PTR [rbp-0x18],rax
+    84cd:	31 c0                	xor    eax,eax
+    84cf:	c7 45 e4 00 00 00 00 	mov    DWORD PTR [rbp-0x1c],0x0
+    84d6:	8b 45 dc             	mov    eax,DWORD PTR [rbp-0x24]
+    84d9:	39 45 e4             	cmp    DWORD PTR [rbp-0x1c],eax
+    84dc:	73 5c                	jae    853a <_Z4lifei+0x8a>
+    84de:	48 8d 45 e3          	lea    rax,[rbp-0x1d]
+    84e2:	48 89 c7             	mov    rdi,rax
+    84e5:	e8 a0 ff ff ff       	call   848a <_ZZ4lifeiEN18XpediteGuardLife12C1Ev>
+    84ea:	e8 01 ff ff ff       	call   83f0 <_Z3eatv>
+    84ef:	90                   	nop
+    84f0:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+    84f5:	e8 29 ff ff ff       	call   8423 <_Z5sleepv>
+    84fa:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+    8500:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+    8505:	e8 4c ff ff ff       	call   8456 <_Z4codev>
+    850a:	48 8d 45 e3          	lea    rax,[rbp-0x1d]
+    850e:	48 89 c7             	mov    rdi,rax
+    8511:	e8 8a ff ff ff       	call   84a0 <_ZZ4lifeiEN18XpediteGuardLife12D1Ev>
+    8516:	83 45 e4 01          	add    DWORD PTR [rbp-0x1c],0x1
+    851a:	eb ba                	jmp    84d6 <_Z4lifei+0x26>
+    851c:	f3 0f 1e fa          	endbr64
+    8520:	48 89 c3             	mov    rbx,rax
+    8523:	48 8d 45 e3          	lea    rax,[rbp-0x1d]
+    8527:	48 89 c7             	mov    rdi,rax
+    852a:	e8 71 ff ff ff       	call   84a0 <_ZZ4lifeiEN18XpediteGuardLife12D1Ev>
+    852f:	48 89 d8             	mov    rax,rbx
+    8532:	48 89 c7             	mov    rdi,rax
+    8535:	e8 86 f3 ff ff       	call   78c0 <_Unwind_Resume@plt>
+    853a:	90                   	nop
+    853b:	48 8b 45 e8          	mov    rax,QWORD PTR [rbp-0x18]
+    853f:	64 48 33 04 25 28 00 	xor    rax,QWORD PTR fs:0x28
+    8546:	00 00
+    8548:	74 05                	je     854f <_Z4lifei+0x9f>
+    854a:	e8 01 f0 ff ff       	call   7550 <__stack_chk_fail@plt>
+    854f:	48 83 c4 28          	add    rsp,0x28
+    8553:	5b                   	pop    rbx
+    8554:	5d                   	pop    rbp
+    8555:	c3                   	ret
+```
