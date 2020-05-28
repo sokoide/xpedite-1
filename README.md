@@ -112,7 +112,9 @@ localhostForwarding=True
 
 ## What's injected
 
-* When you compile foo.cpp with the options I described above, the following Xpedite code was injected at 848a, 84a0 and the callers in `_Z4lifei`. Those I think are replaced with the actual instumentation code at runtime when you enable it.
+* When you compile foo.cpp with the options I described above, the following Xpedite code was injected at 848a, 84a0 and the callers in `_Z4lifei`.
+* When you compile it with -O2, it injects a few nops instead.
+* Those are replaced with the actual instumentation code at runtime when you enable it.
 
 ```
 in foo.cpp:
@@ -131,7 +133,42 @@ void life(int timeToLive_) {
 }
 
 objdump -M Intel -d foo
-...
+
+## If you compile with -O2
+0000000000008690 <_Z4lifei>:
+    8690:	f3 0f 1e fa          	endbr64
+    8694:	85 ff                	test   edi,edi
+    8696:	74 58                	je     86f0 <_Z4lifei+0x60>
+    8698:	55                   	push   rbp
+    8699:	89 fd                	mov    ebp,edi
+    869b:	53                   	push   rbx
+    869c:	31 db                	xor    ebx,ebx
+    869e:	48 83 ec 08          	sub    rsp,0x8
+    86a2:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+    86a8:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+    86ad:	e8 2e fe ff ff       	call   84e0 <_Z3eatv>
+    86b2:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+    86b8:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+    86bd:	e8 ae fe ff ff       	call   8570 <_Z5sleepv>
+    86c2:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+    86c8:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+    86cd:	e8 2e ff ff ff       	call   8600 <_Z4codev>
+    86d2:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+    86d8:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+    86dd:	83 c3 01             	add    ebx,0x1
+    86e0:	39 dd                	cmp    ebp,ebx
+    86e2:	75 c4                	jne    86a8 <_Z4lifei+0x18>
+    86e4:	48 83 c4 08          	add    rsp,0x8
+    86e8:	5b                   	pop    rbx
+    86e9:	5d                   	pop    rbp
+    86ea:	c3                   	ret
+    86eb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
+    86f0:	c3                   	ret
+    86f1:	f3 0f 1e fa          	endbr64
+    86f5:	e9 e6 f2 ff ff       	jmp    79e0 <_Z4lifei.cold.5>
+    86fa:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
+
+## If you compile w/o -Ox
 000000000000848a <_ZZ4lifeiEN18XpediteGuardLife12C1Ev>:
     848a:	55                   	push   rbp
     848b:	48 89 e5             	mov    rbp,rsp
