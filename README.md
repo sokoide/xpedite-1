@@ -245,131 +245,103 @@ void life(int timeToLive_) {
 ```asm
 (gdb) disass life
 Dump of assembler code for function _Z4lifei:
-   0x000055e8ce6426f0 <+0>:     endbr64
-   0x000055e8ce6426f4 <+4>:     test   edi,edi
-   0x000055e8ce6426f6 <+6>:     je     0x55e8ce642750 <_Z4lifei+96>
-   0x000055e8ce6426f8 <+8>:     push   rbp
-   0x000055e8ce6426f9 <+9>:     mov    ebp,edi
-   0x000055e8ce6426fb <+11>:    push   rbx
-   0x000055e8ce6426fc <+12>:    xor    ebx,ebx
-   0x000055e8ce6426fe <+14>:    sub    rsp,0x8
-   0x000055e8ce642702 <+18>:    nop    WORD PTR [rax+rax*1+0x0]
-   0x000055e8ce642708 <+24>:    jmp    0x55e8ce677fc8
-   0x000055e8ce64270d <+29>:    call   0x55e8ce642540 <_Z3eatv>
-   0x000055e8ce642712 <+34>:    nop    WORD PTR [rax+rax*1+0x0]
-   0x000055e8ce642718 <+40>:    jmp    0x55e8ce678034
-   0x000055e8ce64271d <+45>:    call   0x55e8ce6425d0 <_Z5sleepv>
-   0x000055e8ce642722 <+50>:    nop    WORD PTR [rax+rax*1+0x0]
-   0x000055e8ce642728 <+56>:    jmp    0x55e8ce6780a4
-   0x000055e8ce64272d <+61>:    call   0x55e8ce642660 <_Z4codev>
-   0x000055e8ce642732 <+66>:    nop    WORD PTR [rax+rax*1+0x0]
-   0x000055e8ce642738 <+72>:    jmp    0x55e8ce678114
-   0x000055e8ce64273d <+77>:    add    ebx,0x1
-   0x000055e8ce642740 <+80>:    cmp    ebp,ebx
-   0x000055e8ce642742 <+82>:    jne    0x55e8ce642708 <_Z4lifei+24>
-   0x000055e8ce642744 <+84>:    add    rsp,0x8
-   0x000055e8ce642748 <+88>:    pop    rbx
-   0x000055e8ce642749 <+89>:    pop    rbp
-   0x000055e8ce64274a <+90>:    ret
-   0x000055e8ce64274b <+91>:    nop    DWORD PTR [rax+rax*1+0x0]
-   0x000055e8ce642750 <+96>:    ret
-   0x000055e8ce642751 <+97>:    endbr64
-   0x000055e8ce642755 <+101>:   jmp    0x55e8ce6419e0 <_Z4lifei.cold.9>
-End of assembler dump.
+   0x000055672c3586f0 <+0>:     endbr64
+   0x000055672c3586f4 <+4>:     test   edi,edi
+   0x000055672c3586f6 <+6>:     je     0x55672c358750 <_Z4lifei+96>
+   0x000055672c3586f8 <+8>:     push   rbp
+   0x000055672c3586f9 <+9>:     mov    ebp,edi
+   0x000055672c3586fb <+11>:    push   rbx
+   0x000055672c3586fc <+12>:    xor    ebx,ebx
+   0x000055672c3586fe <+14>:    sub    rsp,0x8
+   0x000055672c358702 <+18>:    nop    WORD PTR [rax+rax*1+0x0]
+   0x000055672c358708 <+24>:    jmp    0x55672c38dfc8
+   0x000055672c35870d <+29>:    call   0x55672c358540 <_Z3eatv>
+   0x000055672c358712 <+34>:    nop    WORD PTR [rax+rax*1+0x0]
+   0x000055672c358718 <+40>:    jmp    0x55672c38e034
+   0x000055672c35871d <+45>:    call   0x55672c3585d0 <_Z5sleepv>
+   0x000055672c358722 <+50>:    nop    WORD PTR [rax+rax*1+0x0]
+   0x000055672c358728 <+56>:    jmp    0x55672c38e0a4
+   0x000055672c35872d <+61>:    call   0x55672c358660 <_Z4codev>
+   0x000055672c358732 <+66>:    nop    WORD PTR [rax+rax*1+0x0]
+   0x000055672c358738 <+72>:    jmp    0x55672c38e114
+   0x000055672c35873d <+77>:    add    ebx,0x1
+   0x000055672c358740 <+80>:    cmp    ebp,ebx
+   0x000055672c358742 <+82>:    jne    0x55672c358708 <_Z4lifei+24>
+   0x000055672c358744 <+84>:    add    rsp,0x8
+   0x000055672c358748 <+88>:    pop    rbx
+   0x000055672c358749 <+89>:    pop    rbp
+   0x000055672c35874a <+90>:    ret
+   0x000055672c35874b <+91>:    nop    DWORD PTR [rax+rax*1+0x0]
+   0x000055672c358750 <+96>:    ret
+   0x000055672c358751 <+97>:    endbr64
+   0x000055672c358755 <+101>:   jmp    0x55672c3579e0 <_Z4lifei.cold.9>
 
-(gdb) disass 0x55e8ce660410
-Dump of assembler code for function xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite):
-   0x000055e8ce660410 <+0>:     test   rdi,rdi
-   0x000055e8ce660413 <+3>:     je     0x55e8ce6604b0 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+160>
-   0x000055e8ce660419 <+9>:     push   r12
-   0x000055e8ce66041b <+11>:    push   rbp
-   0x000055e8ce66041c <+12>:    push   rbx
-   0x000055e8ce66041d <+13>:    mov    rbx,rdi
-   0x000055e8ce660420 <+16>:    call   0x55e8ce65e800 <xpedite::probes::Probe::isValid(xpedite::probes::Instructions volatile*, xpedite::probes::Instructions volatile*) const>
-   0x000055e8ce660425 <+21>:    mov    rbp,QWORD PTR [rip+0x252d4]        # 0x55e8ce685700 <_ZN7xpedite6probes6Config9_instanceE>
-   0x000055e8ce66042c <+28>:    mov    r12d,eax
-   0x000055e8ce66042f <+31>:    test   rbp,rbp
-   0x000055e8ce660432 <+34>:    je     0x55e8ce660490 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+128>
-   0x000055e8ce660434 <+36>:    cmp    BYTE PTR [rbp+0x0],0x0
-   0x000055e8ce660438 <+40>:    jne    0x55e8ce6604d0 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+192>
-   0x000055e8ce66043e <+46>:    test   r12b,r12b
-   0x000055e8ce660441 <+49>:    je     0x55e8ce660485 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+117>
-   0x000055e8ce660443 <+51>:    cmp    QWORD PTR [rbx+0x20],0x0
-   0x000055e8ce660448 <+56>:    jne    0x55e8ce660560 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+336>
-   0x000055e8ce66044e <+62>:    mov    rax,QWORD PTR [rip+0x252bb]        # 0x55e8ce685710 <_ZN7xpedite6probes9ProbeList9_instanceE>
-   0x000055e8ce660455 <+69>:    test   rax,rax
-   0x000055e8ce660458 <+72>:    je     0x55e8ce660520 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+272>
-   0x000055e8ce66045e <+78>:    mov    ecx,DWORD PTR [rax+0x8]
-   0x000055e8ce660461 <+81>:    mov    rdx,QWORD PTR [rax]
-   0x000055e8ce660464 <+84>:    lea    esi,[rcx+0x1]
-   0x000055e8ce660467 <+87>:    test   rdx,rdx
-   0x000055e8ce66046a <+90>:    mov    DWORD PTR [rax+0x8],esi
-   0x000055e8ce66046d <+93>:    mov    DWORD PTR [rbx+0x50],ecx
-   0x000055e8ce660470 <+96>:    mov    QWORD PTR [rbx+0x28],0x0
-   0x000055e8ce660478 <+104>:   mov    QWORD PTR [rbx+0x20],rdx
-   0x000055e8ce66047c <+108>:   je     0x55e8ce660482 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+114>
-   0x000055e8ce66047e <+110>:   mov    QWORD PTR [rdx+0x28],rbx
-   0x000055e8ce660482 <+114>:   mov    QWORD PTR [rax],rbx
-   0x000055e8ce660485 <+117>:   pop    rbx
-   0x000055e8ce660486 <+118>:   pop    rbp
-   0x000055e8ce660487 <+119>:   pop    r12
-   0x000055e8ce660489 <+121>:   ret
-   0x000055e8ce66048a <+122>:   nop    WORD PTR [rax+rax*1+0x0]
-   0x000055e8ce660490 <+128>:   mov    edi,0x1
-   0x000055e8ce660495 <+133>:   call   0x55e8ce6414f0 <_Znwm@plt>
-   0x000055e8ce66049a <+138>:   mov    rbp,rax
-   0x000055e8ce66049d <+141>:   mov    rdi,rax
-   0x000055e8ce6604a0 <+144>:   call   0x55e8ce65e750 <xpedite::probes::Config::Config()>
-   0x000055e8ce6604a5 <+149>:   mov    QWORD PTR [rip+0x25254],rbp        # 0x55e8ce685700 <_ZN7xpedite6probes6Config9_instanceE>
-   0x000055e8ce6604ac <+156>:   jmp    0x55e8ce660434 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+36>
-   0x000055e8ce6604ae <+158>:   xchg   ax,ax
-   0x000055e8ce6604b0 <+160>:   mov    rcx,QWORD PTR [rip+0x25069]        # 0x55e8ce685520 <stderr@@GLIBC_2.2.5>
-   0x000055e8ce6604b7 <+167>:   lea    rdi,[rip+0x1a8aa]        # 0x55e8ce67ad68
-   0x000055e8ce6604be <+174>:   mov    edx,0x34
-   0x000055e8ce6604c3 <+179>:   mov    esi,0x1
-   0x000055e8ce6604c8 <+184>:   jmp    0x55e8ce641990 <fwrite@plt>
-   0x000055e8ce6604cd <+189>:   nop    DWORD PTR [rax]
-   0x000055e8ce6604d0 <+192>:   cmp    QWORD PTR [rbx],0x0
-   0x000055e8ce6604d4 <+196>:   je     0x55e8ce660590 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+384>
-   0x000055e8ce6604da <+202>:   test   r12b,r12b
-   0x000055e8ce6604dd <+205>:   lea    rax,[rip+0x1a840]        # 0x55e8ce67ad24
-   0x000055e8ce6604e4 <+212>:   je     0x55e8ce660590 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+384>
-   0x000055e8ce6604ea <+218>:   sub    rsp,0x8
-   0x000055e8ce6604ee <+222>:   mov    rcx,QWORD PTR [rbx+0x30]
-   0x000055e8ce6604f2 <+226>:   mov    rdi,QWORD PTR [rip+0x25027]        # 0x55e8ce685520 <stderr@@GLIBC_2.2.5>
-   0x000055e8ce6604f9 <+233>:   push   rax
-   0x000055e8ce6604fa <+234>:   mov    r9d,DWORD PTR [rbx+0x48]
-   0x000055e8ce6604fe <+238>:   lea    rdx,[rip+0x1a89b]        # 0x55e8ce67ada0
-   0x000055e8ce660505 <+245>:   mov    r8,QWORD PTR [rbx+0x38]
-   0x000055e8ce660509 <+249>:   mov    esi,0x1
-   0x000055e8ce66050e <+254>:   xor    eax,eax
-   0x000055e8ce660510 <+256>:   call   0x55e8ce641820 <__fprintf_chk@plt>
-   0x000055e8ce660515 <+261>:   pop    rax
-   0x000055e8ce660516 <+262>:   pop    rdx
-   0x000055e8ce660517 <+263>:   jmp    0x55e8ce66043e <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+46>
-   0x000055e8ce66051c <+268>:   nop    DWORD PTR [rax+0x0]
-   0x000055e8ce660520 <+272>:   mov    edi,0x10
-   0x000055e8ce660525 <+277>:   call   0x55e8ce6414f0 <_Znwm@plt>
-   0x000055e8ce66052a <+282>:   mov    DWORD PTR [rbx+0x50],0x0
-   0x000055e8ce660531 <+289>:   mov    QWORD PTR [rax],0x0
-   0x000055e8ce660538 <+296>:   mov    QWORD PTR [rip+0x251d1],rax        # 0x55e8ce685710 <_ZN7xpedite6probes9ProbeList9_instanceE>
-   0x000055e8ce66053f <+303>:   mov    DWORD PTR [rax+0x8],0x1
-   0x000055e8ce660546 <+310>:   mov    QWORD PTR [rbx+0x28],0x0
-   0x000055e8ce66054e <+318>:   mov    QWORD PTR [rbx+0x20],0x0
-   0x000055e8ce660556 <+326>:   jmp    0x55e8ce660482 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+114>
-   0x000055e8ce66055b <+331>:   nop    DWORD PTR [rax+rax*1+0x0]
-   0x000055e8ce660560 <+336>:   mov    rcx,QWORD PTR [rbx+0x30]
-   0x000055e8ce660564 <+340>:   mov    r9d,DWORD PTR [rbx+0x48]
-   0x000055e8ce660568 <+344>:   lea    rdx,[rip+0x1a861]        # 0x55e8ce67add0
-   0x000055e8ce66056f <+351>:   mov    r8,QWORD PTR [rbx+0x38]
-   0x000055e8ce660573 <+355>:   mov    rdi,QWORD PTR [rip+0x24fa6]        # 0x55e8ce685520 <stderr@@GLIBC_2.2.5>
-   0x000055e8ce66057a <+362>:   mov    esi,0x1
-   0x000055e8ce66057f <+367>:   pop    rbx
-   0x000055e8ce660580 <+368>:   pop    rbp
-   0x000055e8ce660581 <+369>:   pop    r12
-   0x000055e8ce660583 <+371>:   xor    eax,eax
-   0x000055e8ce660585 <+373>:   jmp    0x55e8ce641820 <__fprintf_chk@plt>
-   0x000055e8ce66058a <+378>:   nop    WORD PTR [rax+rax*1+0x0]
-   0x000055e8ce660590 <+384>:   lea    rax,[rip+0x1a78b]        # 0x55e8ce67ad22
-   0x000055e8ce660597 <+391>:   jmp    0x55e8ce6604ea <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+218>
+(gdb) x/32i 0x55672c38dfc8
+   0x55672c38dfc8:      sub    rsp,0x98
+   0x55672c38dfcf:      push   rcx
+   0x55672c38dfd0:      lea    rcx,[rip+0xd0c9]        # 0x55672c39b0a0 <xpediteTrampolinePtr>
+   0x55672c38dfd7:      call   QWORD PTR [rcx]
+   0x55672c38dfd9:      pop    rcx
+   0x55672c38dfda:      add    rsp,0x98
+   0x55672c38dfe1:      jmp    0x55672c35870d <_Z4lifei+29>
+   0x55672c38dfe6:      mov    rdi,rsp
+   0x55672c38dfe9:      sub    rsp,0x10
+   0x55672c38dfed:      and    rsp,0xfffffffffffffff0
+   0x55672c38dff1:      mov    QWORD PTR [rsp],rdi
+   0x55672c38dff5:      lea    rdi,[rip+0xd204]        # 0x55672c39b200
+   0x55672c38dffc:      lea    rsi,[rip+0xfffffffffffca705]        # 0x55672c358708 <_Z4lifei+24>
+   0x55672c38e003:      lea    rdx,[rip+0xfffffffffffca703]        # 0x55672c35870d <_Z4lifei+29>
+   0x55672c38e00a:      call   0x55672c376410 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)>
+   0x55672c38e00f:      mov    rsp,QWORD PTR [rsp]
+   0x55672c38e013:      ret
+   0x55672c38e014:      mov    rdi,rsp
+   0x55672c38e017:      sub    rsp,0x10
+   0x55672c38e01b:      and    rsp,0xfffffffffffffff0
+   0x55672c38e01f:      mov    QWORD PTR [rsp],rdi
+   0x55672c38e023:      lea    rdi,[rip+0xd1d6]        # 0x55672c39b200
+   0x55672c38e02a:      call   0x55672c3765a0 <xpediteRemoveProbe(xpedite::probes::Probe*)>
+   0x55672c38e02f:      mov    rsp,QWORD PTR [rsp]
+   0x55672c38e033:      ret
+   0x55672c38e034:      sub    rsp,0x98
+   0x55672c38e03b:      push   rcx
+   0x55672c38e03c:      nop    DWORD PTR [rax+0x0]
+   0x55672c38e040:      lea    rcx,[rip+0xd059]        # 0x55672c39b0a0 <xpediteTrampolinePtr>
+   0x55672c38e047:      call   QWORD PTR [rcx]
+   0x55672c38e049:      pop    rcx
+   0x55672c38e04a:      add    rsp,0x98
+
+(gdb) x/32i 0x55672c376410
+   0x55672c376410 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)>:     test   rdi,rdi
+   0x55672c376413 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+3>:   je     0x55672c3764b0 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+160>
+   0x55672c376419 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+9>:   push   r12
+   0x55672c37641b <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+11>:  push   rbp
+   0x55672c37641c <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+12>:  push   rbx
+   0x55672c37641d <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+13>:  mov    rbx,rdi
+   0x55672c376420 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+16>:  call   0x55672c374800 <xpedite::probes::Probe::isValid(xpedite::probes::Instructions volatile*, xpedite::probes::Instructions volatile*) const>
+   0x55672c376425 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+21>:  mov    rbp,QWORD PTR [rip+0x252d4]        # 0x55672c39b700 <_ZN7xpedite6probes6Config9_instanceE>
+   0x55672c37642c <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+28>:  mov    r12d,eax
+   0x55672c37642f <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+31>:  test   rbp,rbp
+   0x55672c376432 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+34>:  je     0x55672c376490 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+128>
+   0x55672c376434 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+36>:  cmp    BYTE PTR [rbp+0x0],0x0
+   0x55672c376438 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+40>:  jne    0x55672c3764d0 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+192>
+   0x55672c37643e <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+46>:  test   r12b,r12b
+   0x55672c376441 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+49>:  je     0x55672c376485 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+117>
+   0x55672c376443 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+51>:  cmp    QWORD PTR [rbx+0x20],0x0
+   0x55672c376448 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+56>:  jne    0x55672c376560 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+336>
+   0x55672c37644e <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+62>:  mov    rax,QWORD PTR [rip+0x252bb]        # 0x55672c39b710 <_ZN7xpedite6probes9ProbeList9_instanceE>
+   0x55672c376455 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+69>:  test   rax,rax
+   0x55672c376458 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+72>:  je     0x55672c376520 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+272>
+   0x55672c37645e <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+78>:  mov    ecx,DWORD PTR [rax+0x8]
+   0x55672c376461 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+81>:  mov    rdx,QWORD PTR [rax]
+   0x55672c376464 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+84>:  lea    esi,[rcx+0x1]
+   0x55672c376467 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+87>:  test   rdx,rdx
+   0x55672c37646a <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+90>:  mov    DWORD PTR [rax+0x8],esi
+   0x55672c37646d <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+93>:  mov    DWORD PTR [rbx+0x50],ecx
+   0x55672c376470 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+96>:  mov    QWORD PTR [rbx+0x28],0x0
+   0x55672c376478 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+104>: mov    QWORD PTR [rbx+0x20],rdx
+   0x55672c37647c <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+108>: je     0x55672c376482 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+114>
+   0x55672c37647e <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+110>: mov    QWORD PTR [rdx+0x28],rbx
+   0x55672c376482 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+114>: mov    QWORD PTR [rax],rbx
+   0x55672c376485 <xpediteAddProbe(xpedite::probes::Probe*, xpedite::probes::CallSite, xpedite::probes::CallSite)+117>: pop    rbx
+...
 ```
